@@ -86,15 +86,19 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[30%] flex flex-col justify-end items-center md:items-end absolute right-0 bottom-0 bg-green-100">
-          {/* Footer Image */}
-          <div className="absolute right-0 bottom-0 w-auto p-1 z-0 opacity-30 md:opacity-100">
+        <div className="w-full md:w-[30%] flex flex-col justify-end items-center md:items-end absolute right-0 bottom-0">
+          <div className="absolute right-auto md:right-0 bottom-0 w-auto p-1 z-0 opacity-30 md:opacity-100">
             <img
               src="./footer2.png"
               alt="footer"
               className="w-full h-64 object-contain"
             />
           </div>
+          {/* <img
+            src="./footer2.png"
+            alt="footer"
+            className="w-full h-64 object-contain bg-white"
+          /> */}
         </div>
       </div>
       <div>

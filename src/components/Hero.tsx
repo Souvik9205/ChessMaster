@@ -2,7 +2,7 @@ import Chessboard from "../model/ChessBoard";
 
 function Hero() {
   return (
-    <div className="h-screen w-full flex flex-col justify-center items-center relative">
+    <div className="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden">
       <div className="absolute w-full h-[30%] top-14 text-center text-white flex flex-col justify-center items-center gap-5 z-40">
         <h1 className="text-6xl font-semibold mb-5 hover:scale-110 transition duration-300">
           CHESS MASTER
@@ -16,7 +16,10 @@ function Hero() {
           </button>
         </a>
       </div>
-      <div className="relative w-full h-[70%]">
+
+      <div className="absolute w-full h-full z-30 bg-transparent block sm:hidden"></div>
+
+      <div className="relative w-full h-[70%] z-20">
         <Chessboard />
       </div>
     </div>
