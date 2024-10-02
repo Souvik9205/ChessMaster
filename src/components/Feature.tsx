@@ -11,7 +11,7 @@ function Feature() {
     <div className="relative w-full h-auto md:h-screen flex flex-col md:flex-row justify-center items-center inset-0">
       {/* 3D Chess Piece section hidden on mobile */}
       <div className="hidden md:block relative w-full md:w-[60%] h-full bg-transparent">
-        {/* <ChessPieces /> */}
+        <ChessPieces />
       </div>
 
       {/* Features section */}

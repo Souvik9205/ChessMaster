@@ -16,7 +16,9 @@ function Hero() {
           </button>
         </a>
       </div>
-      <div className="relative w-full h-[70%]">{/* <Chessboard /> */}</div>
+      <div className="relative w-full h-[70%]">
+        <Chessboard />
+      </div>
     </div>
   );
 }
