@@ -19,7 +19,9 @@ function Hero() {
 
       <div className="absolute w-full h-full z-30 bg-transparent block sm:hidden"></div>
 
-      <div className="relative w-full h-[70%] z-20">{/* <Chessboard /> */}</div>
+      <div className="relative w-full h-[70%] z-20">
+        <Chessboard />
+      </div>
     </div>
   );
 }
