@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuthCheck from "../middleware/authMiddleware";
 import RoomIdModal from "../components/RoomModal";
 import useSocket from "../hooks/useSocket";
+import { FaUser } from "react-icons/fa";
 
 const Home: React.FC = () => {
   useAuthCheck();
@@ -54,6 +55,14 @@ const Home: React.FC = () => {
       className="min-h-screen text-white flex flex-col md:flex-row gap-6 p-6 items-center justify-center
     bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md overflow-hidden"
     >
+      <div
+        onClick={() => {
+          navigate("/dashboard");
+        }}
+        className="absolute top-8 right-8 p-3 bg-white/20 rounded-full hover:bg-white/10 hover:border hover:border-white/20 cursor-pointer"
+      >
+        <FaUser className="h-8 w-8" />
+      </div>
       <div className="md:w-1/2 w-full flex justify-center items-center">
         <img
           src="./chess.jpeg"

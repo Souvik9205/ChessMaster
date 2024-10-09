@@ -7,11 +7,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Chess } from "chess.js";
 import GameOverModal from "../components/GameOverModal";
-import { FaCopy, FaUser, FaChessKnight } from "react-icons/fa";
+import { FaCopy, FaUser } from "react-icons/fa";
+import axios from "axios";
 
 export const MOVE = "move";
 
 const Game: React.FC = () => {
+  const httpURL = "http://localhost:8080";
   useAuthCheck();
   const socket = useSocket();
   const navigate = useNavigate();
@@ -89,15 +91,53 @@ const Game: React.FC = () => {
           });
         }
         if (message.type === "GAME_OVER") {
-          if (message.payload.winner == null) {
-            setGameOver({ winner: null, reason: "Match Draw" });
-          } else {
-            setGameOver({
-              winner: message.payload.winner,
-              reason: message.payload.reason,
-            });
-          }
+          const handleGameOver = async () => {
+            try {
+              if (message.payload.winner == null) {
+                setGameOver({ winner: null, reason: "Match Draw" });
+
+                const res = await axios.post(`${httpURL}/end`, {
+                  username: username,
+                  matches: 1,
+                  wins: 0,
+                  draws: 1,
+                });
+
+                if (res.status !== 200) {
+                  toast.error(res.data.message, {
+                    position: "top-right",
+                  });
+                }
+              } else {
+                const isWinner = message.payload.winner === username;
+                setGameOver({
+                  winner: message.payload.winner,
+                  reason: message.payload.reason,
+                });
+
+                const res = await axios.post(`${httpURL}/end`, {
+                  username: username,
+                  matches: 1,
+                  wins: isWinner ? 1 : 0,
+                  draws: 0,
+                });
+
+                if (res.status !== 200) {
+                  toast.error(res.data.message, {
+                    position: "top-right",
+                  });
+                }
+              }
+            } catch (error) {
+              toast.error("Failed to update match result", {
+                position: "top-right",
+              });
+            }
+          };
+
+          handleGameOver();
         }
+
         if (message.type === "GAME_ENDED") {
           setGameOver({ winner: "Game Ended", reason: message.message });
         }
