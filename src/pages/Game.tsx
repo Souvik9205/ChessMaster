@@ -167,7 +167,7 @@ const Game: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-between h-[100vh] bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md overflow-hidden">
+    <div className="flex flex-col md:flex-row justify-between min-h-dvh bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md overflow-hidden">
       <div className="flex flex-col md:w-2/3 md:flex-row justify-center items-center">
         <div className="w-full h-full mt-10 md:mt-20 flex justify-center">
           <ChessBoard
@@ -181,7 +181,7 @@ const Game: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-1/3 bg-gradient-to-tr from-white/80 via-white/70 to-white/90 p-6 rounded-lg shadow-md border-2 mt-1 border-yellow-200 h-full">
+      <div className="w-full md:w-1/3 bg-gradient-to-tr from-white/80 via-white/70 to-white/90 p-6 rounded-lg shadow-md border-2 mt-1 border-yellow-200 h-[40vh]">
         <h2 className="text-2xl font-bold mb-4 flex items-center text-gray-700">
           Room ID: {roomId}
           <button

@@ -57,7 +57,7 @@ const Auth: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md relative p-6">
+    <div className="min-h-dvh flex items-center justify-center bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md relative p-6">
       <ToastContainer />
 
       <div className="relative w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-xl space-y-6 border border-gray-700">

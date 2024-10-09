@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   return (
     <div
-      className="min-h-screen text-white flex flex-col md:flex-row gap-6 p-6 items-center justify-center
+      className="min-h-dvh text-white flex flex-col md:flex-row gap-6 p-6 items-center justify-center
     bg-gradient-to-br from-neutral-700 via-neutral-800 to-black backdrop-blur-md overflow-hidden"
     >
       <div className="text-center md:text-left">
