@@ -5,13 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuthCheck from "../middleware/authMiddleware";
 import RoomIdModal from "../components/RoomModal";
 import useSocket from "../hooks/useSocket";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaSpinner } from "react-icons/fa";
 
 const Home: React.FC = () => {
   useAuthCheck();
   const socket = useSocket();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isLoadingCreate, setIsLoadingCreate] = useState<boolean>(false);
 
   useEffect(() => {
     if (socket) {
@@ -26,7 +27,7 @@ const Home: React.FC = () => {
         if (message.type === "ROOM_CREATED") {
           const roomId = message.roomId;
           localStorage.setItem("roomId", roomId);
-
+          setIsLoadingCreate(false);
           navigate("/game");
         }
       };
@@ -44,6 +45,7 @@ const Home: React.FC = () => {
   const handleCreateGameClick = () => {
     const username = localStorage.getItem("username");
     if (username && socket) {
+      setIsLoadingCreate(true);
       socket.send(JSON.stringify({ type: "CREATE_ROOM" }));
     } else {
       alert("Please set your username first.");
@@ -83,7 +85,13 @@ const Home: React.FC = () => {
             className="bg-green-400 text-black hover:bg-green-300 transition-colors duration-300 py-3 px-6 rounded-full shadow-md transform hover:scale-105"
             onClick={handleCreateGameClick}
           >
-            Create Game
+            {isLoadingCreate ? (
+              <>
+                <FaSpinner className="animate-spin mr-2" />
+              </>
+            ) : (
+              "Create Game"
+            )}
           </button>
 
           <button

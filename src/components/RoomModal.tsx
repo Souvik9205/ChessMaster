@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { FaSpinner } from "react-icons/fa";
 
 interface RoomIdModalProps {
   onClose: () => void;
@@ -10,6 +11,7 @@ interface RoomIdModalProps {
 
 const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
   const navigate = useNavigate();
+  const [isLoadingJoin, setIsLoadingJoin] = useState<boolean>(false);
   const formik = useFormik({
     initialValues: {
       roomId: "",
@@ -19,10 +21,12 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
+        setIsLoadingJoin(true);
         const username = localStorage.getItem("username");
         const roomId = values.roomId;
         if (username) {
           localStorage.setItem("roomId", roomId);
+          setIsLoadingJoin(false);
           navigate("/game");
         } else {
           toast.error("Please select your username first!", {
@@ -55,7 +59,6 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
           Enter Room ID
         </h2>
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-          {/* Room ID Input */}
           <div>
             <label
               htmlFor="roomId"
@@ -95,7 +98,13 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
               type="submit"
               className="py-2 px-4 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400"
             >
-              Join
+              {isLoadingJoin ? (
+                <>
+                  <FaSpinner className="animate-spin mr-2" />
+                </>
+              ) : (
+                "Join Game"
+              )}
             </button>
           </div>
         </form>
