@@ -29,27 +29,22 @@ const Auth: React.FC = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        // API call to authenticate
         const response = await axios.post("http://localhost:8080/auth", values);
 
         if (response.status === 200 || response.status === 201) {
           const { username } = response.data;
 
-          // Store username in localStorage
           localStorage.setItem("username", username);
 
-          // Show success toast message
           toast.success(response.data.message || "Login successful!", {
             position: "top-right",
           });
 
-          // Redirect to the home page after a short delay
           setTimeout(() => {
             navigate("/home");
-          }, 1500);
+          }, 1000);
         }
       } catch (error: any) {
-        // Display error toast message
         toast.error(
           error.response?.data?.error ||
             "Invalid credentials, please try again.",
@@ -65,14 +60,11 @@ const Auth: React.FC = () => {
       <ToastContainer />
 
       <div className="relative w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-xl shadow-xl space-y-6 border border-gray-700">
-        {/* Chess-Themed Title */}
         <h1 className="text-4xl font-bold text-center text-gray-200 mb-6">
           <span className="text-yellow-500">Chess</span> Login
         </h1>
 
-        {/* Form */}
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-          {/* Username Input */}
           <div>
             <label
               htmlFor="username"
@@ -100,7 +92,6 @@ const Auth: React.FC = () => {
             )}
           </div>
 
-          {/* Password Input */}
           <div>
             <label
               htmlFor="password"
@@ -128,7 +119,6 @@ const Auth: React.FC = () => {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={formik.isSubmitting}

@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import socket from "../hooks/useSocket";
 
 interface RoomIdModalProps {
   onClose: () => void;
@@ -23,22 +22,12 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
         const username = localStorage.getItem("username");
         const roomId = values.roomId;
         if (username) {
-          socket.emit("username", username);
-
-          socket.emit(
-            "joinRoom",
-            { roomId },
-            (response: { error: boolean; message: string }) => {
-              if (response.error) {
-                alert(response.message);
-              } else {
-                localStorage.setItem("roomId", roomId);
-                navigate("/game");
-              }
-            }
-          );
+          localStorage.setItem("roomId", roomId);
+          navigate("/game");
         } else {
-          alert("Please set your username first.");
+          toast.error("Please select your username first!", {
+            position: "top-right",
+          });
         }
         toast.success(`Joining Room: ${values.roomId}`, {
           position: "top-right",
@@ -51,7 +40,6 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
 
         onClose();
       } catch (error) {
-        // Handle any errors that may occur
         toast.error("Error joining room. Please try again.", {
           position: "top-right",
         });
@@ -95,7 +83,6 @@ const RoomIdModal: React.FC<RoomIdModalProps> = ({ onClose }) => {
             )}
           </div>
 
-          {/* Buttons for cancel and submit */}
           <div className="flex justify-between">
             <button
               type="button"
