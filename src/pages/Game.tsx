@@ -181,7 +181,7 @@ const Game: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-1/3 bg-gradient-to-tr from-white/80 via-white/70 to-white/90 p-6 rounded-lg shadow-md border-2 mt-1 border-yellow-200 h-[40vh]">
+      <div className="w-full md:w-1/3 bg-gradient-to-tr from-white/80 via-white/70 to-white/90 p-6 rounded-lg shadow-md border-2 mt-1 border-yellow-200 h-[40vh] md:h-full">
         <h2 className="text-2xl font-bold mb-4 flex items-center text-gray-700">
           Room ID: {roomId}
           <button
