@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Auth: React.FC = () => {
   const navigate = useNavigate();
+  const httpURL = "https://chessmaster-server.onrender.com";
   useEffect(() => {
     const username = localStorage.getItem("username");
     if (username) {
@@ -29,7 +30,7 @@ const Auth: React.FC = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios.post("http://localhost:8080/auth", values);
+        const response = await axios.post(`${httpURL}/auth`, values);
 
         if (response.status === 200 || response.status === 201) {
           const { username } = response.data;

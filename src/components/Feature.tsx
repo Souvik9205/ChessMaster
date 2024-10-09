@@ -9,17 +9,14 @@ import {
 function Feature() {
   return (
     <div className="relative w-full h-auto md:h-screen flex flex-col md:flex-row justify-center items-center inset-0">
-      {/* 3D Chess Piece section hidden on mobile */}
       <div className="hidden md:block relative w-full md:w-[60%] h-[80vh] overflow-hidden bg-transparent">
-        {/* <ChessPieces /> */}
+        <ChessPieces />
       </div>
 
-      {/* Features section */}
       <div className="relative w-full md:w-[40%] h-auto md:h-full text-center text-white flex flex-col justify-center items-center gap-5 z-40 p-5">
         <div>
           <h1 className="text-4xl md:text-6xl font-semibold mb-5">Features</h1>
           <div className="opacity-80 m-4 px-5 md:px-10 text-start flex flex-col gap-4">
-            {/* Feature items with hover */}
             <div className="hover:scale-105 transition-transform duration-300">
               <div className="text-lg md:text-xl font-semibold flex gap-2 items-center">
                 <FaChessKnight />
@@ -69,7 +66,6 @@ function Feature() {
             </div>
           </div>
 
-          {/* Get Started button */}
           <div>
             <a href="/home">
               <button className="px-8 py-2 border border-white text-white rounded-md shadow-lg transition duration-300 ease-in-out hover:bg-white  hover:text-black hover:shadow-2xl hover:shadow-white/50">

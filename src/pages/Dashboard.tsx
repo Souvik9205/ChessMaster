@@ -12,14 +12,13 @@ interface UserData {
   matches: number;
   wins: number;
   draws: number;
-  winrate: number;
   createdAt: string;
 }
 
 const Dashboard = () => {
   useAuthCheck();
   const navigate = useNavigate();
-  const httpURL = "http://localhost:8080";
+  const httpURL = "https://chessmaster-server.onrender.com";
   const [data, setData] = useState<UserData | null>(null);
   const username = localStorage.getItem("username");
 

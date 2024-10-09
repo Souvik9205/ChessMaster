@@ -13,7 +13,7 @@ import axios from "axios";
 export const MOVE = "move";
 
 const Game: React.FC = () => {
-  const httpURL = "http://localhost:8080";
+  const httpURL = "https://chessmaster-server.onrender.com";
   useAuthCheck();
   const socket = useSocket();
   const navigate = useNavigate();
